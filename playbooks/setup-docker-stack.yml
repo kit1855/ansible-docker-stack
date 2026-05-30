@@ -1,0 +1,46 @@
+---
+- name: Setup Docker stack on server2
+  hosts: server2
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker and Docker Compose
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Create directory for docker-compose
+      file:
+        path: /home/{{ ansible_user }}/docker-env
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Copy docker-compose.yml from server1 to server2
+      copy:
+        src: /home/{{ ansible_user }}/docker-environment/docker-compose.yml
+        dest: /home/{{ ansible_user }}/docker-env/docker-compose.yml
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Run docker-compose up
+      docker_compose:
+        project_src: /home/{{ ansible_user }}/docker-env
+        state: present

@@ -1,0 +1,5 @@
+all:
+  hosts:
+    server2:
+      ansible_host: 185.75.189.29
+      ansible_user: user
