@@ -2,8 +2,8 @@
 
 ## Требования
 
-- Control node (server1) с Ubuntu и Ansible
-- Managed node (server2) с Ubuntu и SSH-доступом
+- Управляющий узел (server1) с Ubuntu и Ansible
+- Управляемый узел (server2) с Ubuntu и SSH-доступом
 - Настроен passwordless sudo на server2
 
 ## Установка Ansible на server1

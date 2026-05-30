@@ -2,7 +2,7 @@
 
 ## Схема работы
 
-- Control node (server1) → Managed node (server2)
+- Управляющий узел (server1) → Управляемый узел (server2)
 - Ansible подключается по SSH
 - Выполняет плейбук с задачами
 - Результат: запущенные Docker-контейнеры
@@ -17,13 +17,13 @@
 
 ## Задачи плейбука
 
-1. Update apt cache
-2. Install Docker и Docker Compose
-3. Start и enable Docker service
-4. Add user to docker group
-5. Create directory for docker-compose
-6. Copy docker-compose.yml to remote host
-7. Run docker-compose up
+1. Обновление кэша apt
+2. Установка Docker и Docker Compose
+3. Запуск и включение сервиса Docker
+4. Добавление пользователя в группу docker
+5. Создание директории для docker-compose
+6. Копирование docker-compose.yml на удалённый сервер
+7. Запуск контейнеров через docker-compose up
 
 ## Управляемый хост
 
